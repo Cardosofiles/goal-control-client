@@ -54,11 +54,11 @@ export function WeeklySummary({ summary }: WeeklySummaryProps) {
     setSearchParams(params);
   }
 
-  const isCurrentWeek = dayjs(weekStartsAt).endOf("week").isAfter(new Date());
+  const isCurrentWeek = dayjs(weekStartsAt).startOf("week").isAfter(new Date());
 
   return (
     <main className="max-w-[600px] px-1 py-10 lg:px-5 mx-auto flex flex-col gap-6">
-      <div className="bg-zinc-900 px-5 py-3 shadow-shape rounded-xl">
+      <div className="bg-zinc-900 px-5 py-3 shadow-shape rounded-xl border border-zinc-800">
         <div className="flex items-center gap-3 justify-between">
           <UserProfile />
           <UserLevel />
@@ -91,7 +91,7 @@ export function WeeklySummary({ summary }: WeeklySummaryProps) {
           </div>
 
           <DialogTrigger asChild>
-            <Button size="sm">
+            <Button size="sm" disabled={!isCurrentWeek}>
               <Plus className="size-4" />
               Cadastrar meta
             </Button>
@@ -99,7 +99,7 @@ export function WeeklySummary({ summary }: WeeklySummaryProps) {
         </div>
 
         <div className="flex flex-col gap-3">
-          <Progress value={summary.completed} max={summary.total ?? 0}>
+          <Progress value={summary.completed} max={summary.total ?? 1}>
             <ProgressIndicator style={{ width: `${completedPercentage}%` }} />
           </Progress>
 
@@ -116,7 +116,7 @@ export function WeeklySummary({ summary }: WeeklySummaryProps) {
 
         <Separator />
 
-        <PendingGoals />
+        {isCurrentWeek && <PendingGoals />}
 
         <div className="space-y-6">
           <h2 className="text-xl font-medium">Sua semana</h2>
