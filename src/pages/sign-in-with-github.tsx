@@ -3,7 +3,7 @@ import { GoalTrakingLogo } from "../components/goal-traking-logo";
 import { Button } from "../components/ui/button";
 
 export function SignInWithGithub() {
-  const githubUrl = new URL("https://github.com/login/oauth/authorize");
+  const githubUrl = new URL("/login/oauth/authorize", "https://github.com");
 
   githubUrl.searchParams.set("client_id", "Iv23li2o7vpC5KSJ4oRT");
 

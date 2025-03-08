@@ -3,6 +3,7 @@ import { Plus } from "lucide-react";
 
 import {
   getGetPendingGoalsQueryKey,
+  getGetUserExperienceAndLevelQueryKey,
   getGetWeekSummaryQueryKey,
   useCreateCompletion,
   useGetPendingGoals,
@@ -29,6 +30,9 @@ export function PendingGoals() {
 
     queryClient.invalidateQueries({ queryKey: getGetPendingGoalsQueryKey() });
     queryClient.invalidateQueries({ queryKey: getGetWeekSummaryQueryKey() });
+    queryClient.invalidateQueries({
+      queryKey: getGetUserExperienceAndLevelQueryKey(),
+    });
   }
 
   return (

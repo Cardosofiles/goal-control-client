@@ -17,18 +17,14 @@ export function SignInWithGithubCallback() {
     return <Navigate to="/" />;
   }
 
-  const timerCookies = 60 * 60 * 24; // 1 day in seconds
-
   useEffect(() => {
-    authenticateFromGithub({
-      data: { code },
-    }).then((response) => {
-      const token = response.data.token;
-      const cookie = new Cookies();
+    authenticateFromGithub({ data: { code } }).then((response) => {
+      const token = response.token;
+      const cookies = new Cookies();
 
-      cookie.set("goal-control.token", token, {
+      cookies.set("goal-traking.token", token, {
         path: "/",
-        maxAge: timerCookies,
+        maxAge: 60 * 60 * 24, // 1 day
       });
 
       navigate("/app");
@@ -37,7 +33,7 @@ export function SignInWithGithubCallback() {
 
   return (
     <div className="h-screen flex items-center justify-center">
-      <Loader2 className="size-8 text-gray-500 animate-spin" />
+      <Loader2 className="size-6 text-gray-500 animate-spin" />
     </div>
   );
 }

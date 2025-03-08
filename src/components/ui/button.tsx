@@ -14,7 +14,8 @@ const button = tv({
 
     size: {
       default: "px-4 py-2.5",
-      sm: "px-3 py-2",
+      icon: "size-7",
+      sm: "px-3 py-2.5",
     },
   },
 
